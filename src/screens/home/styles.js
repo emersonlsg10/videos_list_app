@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
   },
 
   container_flat_list: {
-    marginTop: 15,
+    marginTop: 5,
     paddingBottom: 40,
     paddingHorizontal: 15 % appMetrics.DEVICE_WIDTH,
   },

@@ -14,6 +14,7 @@ import {
 import {styles} from './styles';
 import {useVideos} from '../../hooks/videos';
 import moment from 'moment';
+import SearchComponent from '../../components/search';
 
 const initialFilters = {page: 1, query: '', per_page: 20};
 
@@ -45,6 +46,11 @@ const Home = () => {
     <SafeAreaView style={styles.background}>
       <View style={styles.home_container}>
         <Text style={styles.title}>Lista de Lançamentos</Text>
+        <SearchComponent
+          handleCancel={() => {}}
+          handleSearch={() => {}}
+          value={filters?.query}
+        />
       </View>
       <FlatList
         onEndReached={getMore}
