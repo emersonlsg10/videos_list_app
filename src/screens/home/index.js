@@ -21,14 +21,18 @@ const initialFilters = {page: 1, query: '', per_page: 20};
 const formatDate = date => moment(date).format('DD-MM-YYYY');
 
 const Home = () => {
-  const {getVideos, totalPages, videos, loading} = useVideos();
+  const {getVideos, getSearchVideo, totalPages, videos, loading} = useVideos();
 
   const [filters, setFilters] = useState(initialFilters);
   const [openModal, setOpenModal] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
-    getVideos({filters});
+    if (filters?.query !== '') {
+      getSearchVideo({filters});
+    } else {
+      getVideos({filters});
+    }
   }, [filters]);
 
   const getMore = () => {
@@ -37,9 +41,17 @@ const Home = () => {
     }
 
     let nextPage = filters?.page + 1;
-    if (filters.page <= totalPages) {
+    if (filters?.page < totalPages) {
       setFilters(fil => ({...fil, page: nextPage}));
     }
+  };
+
+  const handleSearch = query => {
+    setFilters(fil => ({...fil, query}));
+  };
+
+  const handleCancel = () => {
+    setFilters(fil => ({...fil, page: 1, query: ''}));
   };
 
   return (
@@ -47,8 +59,8 @@ const Home = () => {
       <View style={styles.home_container}>
         <Text style={styles.title}>Lista de Lançamentos</Text>
         <SearchComponent
-          handleCancel={() => {}}
-          handleSearch={() => {}}
+          handleCancel={handleCancel}
+          handleSearch={handleSearch}
           value={filters?.query}
         />
       </View>
