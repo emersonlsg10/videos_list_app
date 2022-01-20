@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "android:release": "cd android && ./gradlew app:assembleRelease"
   },
   "dependencies": {
     "moment": "^2.29.1",
