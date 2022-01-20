@@ -81,7 +81,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,1)',
     height: appMetrics.DEVICE_HEIGHT * 0.85,
     padding: 20,
-    paddingBottom: 60,
+    paddingBottom: 30,
   },
 
   close_modal: {
@@ -97,7 +97,7 @@ export const styles = StyleSheet.create({
   },
 
   image_movie_modal: {
-    width: 250,
+    width: 300,
     height: 300,
     borderRadius: 7,
   },
@@ -117,9 +117,9 @@ export const styles = StyleSheet.create({
 
   overview_modal: {
     color: '#fff',
-    fontSize: 12,
+    fontSize: 13,
     fontWeight: '500',
-    marginTop: 15,
+    marginTop: 10,
     maxWidth: appMetrics.DEVICE_WIDTH * 0.75,
   },
 });
