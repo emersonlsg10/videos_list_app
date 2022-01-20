@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
   },
 
   cancelText: {
-    color: '#2E0C65',
+    color: '#6F41DA',
     fontFamily: 'Poppins',
     fontWeight: 'bold',
     fontSize: 12,
