@@ -21,7 +21,8 @@ const initialFilters = {page: 1, query: '', per_page: 20};
 const formatDate = date => moment(date).format('DD-MM-YYYY');
 
 const Home = () => {
-  const {getVideos, getSearchVideo, totalPages, videos, loading} = useVideos();
+  const {getVideos, getSearchVideo, totalPages, totalResults, videos, loading} =
+    useVideos();
 
   const [filters, setFilters] = useState(initialFilters);
   const [openModal, setOpenModal] = useState(false);
@@ -64,6 +65,13 @@ const Home = () => {
           value={filters?.query}
         />
       </View>
+      {!loading && totalResults === 0 && (
+        <View style={styles.empty_state}>
+          <Text style={styles.text_empty_state}>
+            Sem resultados encontrados!
+          </Text>
+        </View>
+      )}
       <FlatList
         onEndReached={getMore}
         onEndReachedThreshold={0.7}
@@ -88,6 +96,7 @@ const Home = () => {
         )}
         keyExtractor={(item, index) => index.toString()}
       />
+
       <ModalMovie
         openModal={openModal}
         setOpenModal={setOpenModal}

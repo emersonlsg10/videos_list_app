@@ -13,6 +13,16 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.darker,
   },
 
+  empty_state: {
+    marginTop: 20,
+  },
+
+  text_empty_state: {
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+
   title: {
     fontSize: 25,
     textAlign: 'center',

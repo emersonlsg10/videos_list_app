@@ -7,6 +7,7 @@ export const useVideos = () => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
+  const [totalResults, setTotalResults] = useState(0);
 
   const getSearchVideo = ({filters}) => {
     setLoading(true);
@@ -24,6 +25,7 @@ export const useVideos = () => {
             setVideos([...videos, ...data?.results]);
           }
           setTotalPages(data?.total_pages);
+          setTotalResults(data?.total_results);
           setLoading(false);
         });
       })
@@ -48,6 +50,7 @@ export const useVideos = () => {
             setVideos([...videos, ...data?.results]);
           }
           setTotalPages(data?.total_pages);
+          setTotalResults(data?.total_results);
           setLoading(false);
         });
       })
@@ -60,6 +63,7 @@ export const useVideos = () => {
     getVideos,
     getSearchVideo,
     totalPages,
+    totalResults,
     videos,
     loading,
   };
