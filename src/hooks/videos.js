@@ -21,7 +21,7 @@ export const useVideos = () => {
           if (filters?.page === 1) {
             setVideos(data?.results);
           } else if (filters?.page > 1 && videos.length > 0) {
-            setVideos([...videos, data?.results]);
+            setVideos([...videos, ...data?.results]);
           }
           setTotalPages(data?.total_pages);
           setLoading(false);
@@ -45,7 +45,7 @@ export const useVideos = () => {
           if (filters?.page === 1) {
             setVideos(data?.results);
           } else if (filters?.page > 1 && videos.length > 0) {
-            setVideos([...videos, data?.results]);
+            setVideos([...videos, ...data?.results]);
           }
           setTotalPages(data?.total_pages);
           setLoading(false);

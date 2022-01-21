@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
   card_movie: {
     backgroundColor: '#f2f2f2',
     borderRadius: 7,
-    height: 150,
+    height: 140,
     marginBottom: 15,
   },
 
@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
   },
 
   first_container: {
-    width: appMetrics.DEVICE_WIDTH * 0.6,
+    width: appMetrics.DEVICE_WIDTH * 0.63,
     marginBottom: 5,
   },
 
@@ -47,6 +47,7 @@ export const styles = StyleSheet.create({
     color: '#111',
     fontSize: 17,
     fontWeight: 'bold',
+    maxWidth: appMetrics.DEVICE_WIDTH * 0.63,
   },
 
   release_date: {
@@ -62,13 +63,14 @@ export const styles = StyleSheet.create({
     fontWeight: '500',
     fontStyle: 'italic',
     marginTop: 5,
-    maxWidth: appMetrics.DEVICE_WIDTH * 0.55,
+    maxWidth: appMetrics.DEVICE_WIDTH * 0.63,
   },
 
   image_movie: {
-    width: 100,
-    height: 100,
+    width: 95,
+    height: 120,
     borderRadius: 7,
+    marginTop: 3,
   },
 
   overlay_modal: {
@@ -97,7 +99,7 @@ export const styles = StyleSheet.create({
   },
 
   image_movie_modal: {
-    width: 300,
+    width: 250,
     height: 300,
     borderRadius: 7,
   },
@@ -108,7 +110,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginTop: 10,
-    maxWidth: appMetrics.DEVICE_WIDTH * 0.6,
+    maxWidth: appMetrics.DEVICE_WIDTH * 0.75,
   },
 
   release_date_modal: {

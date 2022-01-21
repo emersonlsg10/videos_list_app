@@ -47,7 +47,7 @@ const Home = () => {
   };
 
   const handleSearch = query => {
-    setFilters(fil => ({...fil, query}));
+    setFilters(fil => ({...fil, page: 1, query}));
   };
 
   const handleCancel = () => {
@@ -66,7 +66,7 @@ const Home = () => {
       </View>
       <FlatList
         onEndReached={getMore}
-        onEndReachedThreshold={0.5}
+        onEndReachedThreshold={0.7}
         refreshControl={
           <RefreshControl
             refreshing={loading}
@@ -78,9 +78,10 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.container_flat_list}
         data={videos}
-        renderItem={({item}) => (
+        renderItem={({item, index}) => (
           <CardMovie
             item={item}
+            index={index}
             setOpenModal={setOpenModal}
             setSelectedMovie={setSelectedMovie}
           />
@@ -96,17 +97,23 @@ const Home = () => {
   );
 };
 
-const CardMovie = ({item, setOpenModal, setSelectedMovie}) => {
+const CardMovie = ({item, index, setOpenModal, setSelectedMovie}) => {
   return (
     <TouchableOpacity
       style={styles.card_movie}
+      key={index}
       onPress={() => {
         setSelectedMovie(item);
         setOpenModal(true);
       }}>
       <View style={styles.container_card}>
         <View style={styles.first_container}>
-          <Text style={styles.title_movie}>{item?.title}</Text>
+          <Text
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={styles.title_movie}>
+            {item?.title}
+          </Text>
           <Text style={styles.release_date}>
             {`Lançamento: ${formatDate(item?.release_date)}`}
           </Text>
@@ -115,6 +122,7 @@ const CardMovie = ({item, setOpenModal, setSelectedMovie}) => {
           </Text>
         </View>
         <Image
+          resizeMode="contain"
           style={styles.image_movie}
           source={{uri: `http://image.tmdb.org/t/p/w185${item?.poster_path}`}}
         />
