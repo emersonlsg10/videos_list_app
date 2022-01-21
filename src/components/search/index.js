@@ -52,7 +52,7 @@ const SearchComponent = ({
               setSearch(txt);
             }
           }}
-          placeholder={placeholder ? placeholder : 'Busque seu filme'}
+          placeholder={placeholder ? placeholder : 'Busque por filmes'}
           style={styles.input}
         />
         {search !== '' && search && (
