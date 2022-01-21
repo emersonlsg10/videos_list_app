@@ -11,7 +11,7 @@ export const useVideos = () => {
   const getSearchVideo = ({filters}) => {
     setLoading(true);
 
-    const URL_GET_VIDEOS = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&page=${filters?.page}&query=${filters?.query}`;
+    const URL_GET_VIDEOS = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=pt-BR&page=${filters?.page}&query=${filters?.query}`;
 
     fetch(URL_GET_VIDEOS, {
       method: 'get', // opcional
