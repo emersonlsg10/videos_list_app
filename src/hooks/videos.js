@@ -34,7 +34,7 @@ export const useVideos = () => {
       });
   };
 
-  const getVideos = ({filters}) => {
+  const getVideos = filters => {
     setLoading(true);
 
     const URL_GET_VIDEOS = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=pt-BR&page=${filters?.page}`;
