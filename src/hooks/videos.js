@@ -34,29 +34,44 @@ export const useVideos = () => {
       });
   };
 
-  const getVideos = filters => {
-    setLoading(true);
+  const getVideos = async filters => {
+    try {
+      setLoading(true);
+      const URL_GET_VIDEOS = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=pt-BR&page=${filters?.page}`;
 
-    const URL_GET_VIDEOS = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=pt-BR&page=${filters?.page}`;
+      let response = await fetch(URL_GET_VIDEOS);
 
-    fetch(URL_GET_VIDEOS, {
-      method: 'get', // opcional
-    })
-      .then(function (response) {
-        response.json().then(function (data) {
-          if (filters?.page === 1) {
-            setVideos(data?.results);
-          } else if (filters?.page > 1 && videos.length > 0) {
-            setVideos([...videos, ...data?.results]);
-          }
-          setTotalPages(data?.total_pages);
-          setTotalResults(data?.total_results);
-          setLoading(false);
-        });
-      })
-      .catch(function (err) {
-        setLoading(false);
-      });
+      response = await response.json();
+
+      setTotalPages(response?.total_pages);
+      setTotalResults(response?.total_results);
+      setVideos(response?.results);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+
+    //
+
+    // fetch(URL_GET_VIDEOS, {
+    //   method: 'get', // opcional
+    // })
+    //   .then(function (response) {
+    //     response.json().then(function (data) {
+    //       if (filters?.page === 1) {
+    //         setVideos(data?.results);
+    //       } else if (filters?.page > 1 && videos.length > 0) {
+    //         setVideos([...videos, ...data?.results]);
+    //       }
+    //       setTotalPages(data?.total_pages);
+    //       setTotalResults(data?.total_results);
+    //       setLoading(false);
+    //     });
+    //   })
+    //   .catch(function (err) {
+    //     setLoading(false);
+    //   });
   };
 
   return {

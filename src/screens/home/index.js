@@ -8,18 +8,22 @@ import {
   Image,
   Modal,
   Pressable,
+  ActivityIndicator,
 } from 'react-native';
 import {useVideos} from '../../hooks/videos';
 import {styles} from './styles';
 import moment from 'moment';
 
 const Home = () => {
-  const {getVideos, videos} = useVideos();
+  const {getVideos, loading, videos} = useVideos();
+
+  const [filters, setFilters] = useState({
+    page: 1,
+  });
 
   useEffect(() => {
-    // executa assim que a tela monta/carrega.
-    getVideos({page: 1});
-  }, []);
+    getVideos(filters);
+  }, [filters]);
 
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -30,6 +34,14 @@ const Home = () => {
   };
 
   const formatDate = date => moment(date).format('DD-MM-YYYY');
+
+  if (loading) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignContent: 'center'}}>
+        <ActivityIndicator size={50} color="primary" />
+      </View>
+    );
+  }
 
   return (
     <>
