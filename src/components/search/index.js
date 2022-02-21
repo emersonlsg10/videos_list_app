@@ -8,10 +8,10 @@ import {styles} from './styles';
 const INITIAL_PAGE = 1;
 
 const SearchComponent = ({
-  handleSearch,
-  handleCancel,
+  handleSearch = () => {},
+  handleCancel = () => {},
   value = '',
-  placeholder,
+  placeholder = '',
 }) => {
   const [search, setSearch] = useState(() => {
     return value && value !== '' ? value : '';

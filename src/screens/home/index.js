@@ -12,18 +12,33 @@ import {
 } from 'react-native';
 import {useVideos} from '../../hooks/videos';
 import {styles} from './styles';
+import SearchComponent from '../../components/search';
 import moment from 'moment';
 
 const Home = () => {
-  const {getVideos, loading, videos} = useVideos();
+  const {getVideos, getSearchVideo, loading, videos} = useVideos();
 
   const [filters, setFilters] = useState({
     page: 1,
+    query: '',
   });
 
   useEffect(() => {
-    getVideos(filters);
+    // executar oque tiver aqui dentro
+    if (filters?.query !== '') {
+      // busca pelo text
+      getSearchVideo(filters);
+    } else {
+      getVideos(filters);
+    }
   }, [filters]);
+
+  const handleSearch = text => {
+    // console.log(text);
+    if (text && text !== '') {
+      setFilters({page: 1, query: text});
+    }
+  };
 
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -46,7 +61,8 @@ const Home = () => {
   return (
     <>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-        {videos.map((item, index) => (
+        <SearchComponent handleSearch={handleSearch} />
+        {videos?.map((item, index) => (
           <TouchableOpacity
             onPress={() => handleClick(item)}
             style={styles.card}
